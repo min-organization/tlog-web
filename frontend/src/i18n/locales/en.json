@@ -1,0 +1,50 @@
+{
+  "brand": "tlog · SSH Session Audit & Replay",
+  "login": {
+    "title": "tlog · Session Audit",
+    "username": "Username",
+    "password": "Password",
+    "submit": "Sign in",
+    "warnEmpty": "Please enter username and password",
+    "success": "Signed in",
+    "error": "Sign in failed"
+  },
+  "sessions": {
+    "title": "SSH Session Audit",
+    "refresh": "Refresh"
+  },
+  "filter": {
+    "user": "User",
+    "userPlaceholder": "All users",
+    "dateFrom": "From",
+    "dateFromPlaceholder": "Start date",
+    "dateTo": "To",
+    "dateToPlaceholder": "End date",
+    "search": "Search",
+    "searchPlaceholder": "summary / rec-id",
+    "pageSize": "Page size",
+    "query": "Query",
+    "reset": "Reset"
+  },
+  "table": {
+    "time": "Time",
+    "user": "User",
+    "summary": "Summary",
+    "rec": "Session ID",
+    "action": "Action",
+    "replay": "Replay"
+  },
+  "replay": {
+    "title": "Session Replay",
+    "speed": "Speed",
+    "restart": "Replay again",
+    "close": "Close",
+    "ended": "[Replay ended]",
+    "connError": "[Replay connection error]",
+    "connecting": "Connecting replay session..."
+  },
+  "topbar": {
+    "logout": "Sign out",
+    "language": "Language"
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "brand": "tlog · SSH 会话审计回放",
+  "login": {
+    "title": "tlog · 会话审计",
+    "username": "用户名",
+    "password": "密码",
+    "submit": "登录",
+    "warnEmpty": "请输入用户名和密码",
+    "success": "登录成功",
+    "error": "登录失败"
+  },
+  "sessions": {
+    "title": "SSH 会话审计",
+    "refresh": "刷新"
+  },
+  "filter": {
+    "user": "用户",
+    "userPlaceholder": "全部用户",
+    "dateFrom": "日期从",
+    "dateFromPlaceholder": "起始日期",
+    "dateTo": "日期到",
+    "dateToPlaceholder": "结束日期",
+    "search": "搜索",
+    "searchPlaceholder": "摘要 / rec-id",
+    "pageSize": "每页",
+    "query": "查询",
+    "reset": "重置"
+  },
+  "table": {
+    "time": "时间",
+    "user": "用户",
+    "summary": "概要",
+    "rec": "会话 ID",
+    "action": "操作",
+    "replay": "回放"
+  },
+  "replay": {
+    "title": "会话回放",
+    "speed": "速度",
+    "restart": "重新回放",
+    "close": "关闭",
+    "ended": "[回放结束]",
+    "connError": "[回放连接错误]",
+    "connecting": "正在连接回放会话..."
+  },
+  "topbar": {
+    "logout": "退出登录",
+    "language": "语言"
+  }
+}

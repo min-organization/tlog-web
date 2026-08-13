@@ -1,0 +1,26 @@
+services:
+  # tlog-web：Go 单二进制（collector 增量索引 + SQLite + HTTP/WS 服务）
+  tlog-web:
+    build: .
+    image: tlog-web:go
+    container_name: tlog-web
+    restart: unless-stopped
+    command: ["/tlog-web-server"]
+    ports:
+      - "38081:8080"                    # 容器内 8080，映射宿主机高位端口 38081（统一规范）
+    env_file:
+      - .env                            # TLOG_USER / TLOG_KEY / TLOG_SECRET
+    volumes:
+      - /var/log/tlog:/var/log/tlog:ro      # 原始录制日志（只读）
+      - ./data:/data                        # SQLite 索引 + collector 断点状态（服务目录下持久化）
+      - ./recordings:/data/recordings       # 回放实体文件(不分桶 <rec>.cast, 可配 REC_DIR)
+    environment:
+      - LOG_DIR=/var/log/tlog
+      - LOG_FILE=tlog-session.log
+      - DB_PATH=/data/tlog.db
+      - STATE_PATH=/data/collector.state
+      - REC_DIR=/data/recordings            # 回放文件目录(可配)
+      - RETENTION_DAYS=7                     # 审计记录保留 7 天(与代码默认值一致)
+      - SPEED_MAX=8
+      - HTTP_ADDR=0.0.0.0:8080
+      # 统一规范：容器内监听 8080，宿主机映射 38081；OpenResty 经 host.docker.internal:38081 反代（不依赖固定网络）

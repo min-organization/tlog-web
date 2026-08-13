@@ -1,0 +1,25 @@
+# 敏感配置（含认证凭据），不入库
+.env
+
+# 运行时数据（bind mount，非源码）
+data/
+recordings/
+*.db
+*.db-shm
+*.db-wal
+collector.state
+
+# 裸二进制构建产物（make / build.sh 生成）
+frontend/dist/
+backend/frontend/dist/
+node_modules/
+/tlog-web
+/tlog-web-*
+backend/tlog-web
+backend/tlog-web-*
+
+# 开发调试残留
+logs/
+__pycache__/
+*.pyc
+.git
