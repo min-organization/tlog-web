@@ -3,7 +3,7 @@ import { ref, nextTick, watch, onBeforeUnmount } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { Terminal } from '@xterm/xterm'
 import { FitAddon } from '@xterm/addon-fit'
-import { openReplayWS } from '../api'
+import { openReplayWS, getToken } from '../api'
 
 const { t } = useI18n()
 
@@ -81,6 +81,11 @@ function connect() {
     term?.write(text)
   }
   ws.onclose = () => {
+    // 若令牌已失效(401 已被 api 层清空 token),提示重新登录而非仅“回放结束”
+    if (!getToken()) {
+      term?.writeln('\r\n' + t('replay.tokenExpired'))
+      return
+    }
     term?.writeln('\r\n' + t('replay.ended'))
   }
   ws.onerror = () => {

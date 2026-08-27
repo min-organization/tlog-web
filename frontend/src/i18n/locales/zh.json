@@ -32,7 +32,8 @@
     "summary": "概要",
     "rec": "会话 ID",
     "action": "操作",
-    "replay": "回放"
+    "replay": "回放",
+    "loadError": "加载失败,请稍后重试"
   },
   "replay": {
     "title": "会话回放",
@@ -41,6 +42,7 @@
     "close": "关闭",
     "ended": "[回放结束]",
     "connError": "[回放连接错误]",
+    "tokenExpired": "[登录已过期,请刷新页面重新登录]",
     "connecting": "正在连接回放会话..."
   },
   "topbar": {

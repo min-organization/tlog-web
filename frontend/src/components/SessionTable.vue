@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { ElMessage } from 'element-plus'
 import type { Session, QueryParams } from '../types'
 import { fetchSessions } from '../api'
 
@@ -28,7 +29,10 @@ async function load(p: QueryParams) {
     total.value = resp.total
     currentPage.value = resp.page
   } catch (e) {
+    // 401(unauthorized)由 api 层派发全局事件、App 已切回登录页,此处不重复提示
+    if (e instanceof Error && e.message === 'unauthorized') return
     console.error('load sessions failed', e)
+    ElMessage.error(t('table.loadError'))
   } finally {
     loading.value = false
   }

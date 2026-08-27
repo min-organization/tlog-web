@@ -32,6 +32,11 @@ async function getJSON<T>(url: string): Promise<T> {
   const resp = await fetch(url, { credentials: 'same-origin', headers: authHeader() })
   if (resp.status === 401) {
     clearToken()
+    // 派发全局“未授权”事件: App.vue 监听后响应式切回登录页(解决登录过期不跳转问题)。
+    // 保留 throw 供调用方可选 catch(如列表请求静默处理)。
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new CustomEvent('tlog:unauthorized'))
+    }
     throw new Error('unauthorized')
   }
   if (!resp.ok) {

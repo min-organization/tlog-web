@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { useI18n } from 'vue-i18n'
 import SessionsView from './views/SessionsView.vue'
 import LoginView from './views/LoginView.vue'
@@ -14,6 +14,21 @@ function onLoggedIn() {
   loggedIn.value = true
   username.value = getUsername()
 }
+
+// 登录过期/令牌失效: api 层在收到 401 时派发 tlog:unauthorized,
+// 此处响应式切回登录页(解决“过期后点击无反应、只有刷新才跳转”的问题)。
+function onUnauthorized() {
+  clearToken()
+  loggedIn.value = false
+  username.value = ''
+}
+
+onMounted(() => {
+  window.addEventListener('tlog:unauthorized', onUnauthorized)
+})
+onBeforeUnmount(() => {
+  window.removeEventListener('tlog:unauthorized', onUnauthorized)
+})
 
 async function onLogout() {
   await logout()

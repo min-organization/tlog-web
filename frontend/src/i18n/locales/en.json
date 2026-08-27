@@ -32,7 +32,8 @@
     "summary": "Summary",
     "rec": "Session ID",
     "action": "Action",
-    "replay": "Replay"
+    "replay": "Replay",
+    "loadError": "Failed to load, please retry"
   },
   "replay": {
     "title": "Session Replay",
@@ -41,6 +42,7 @@
     "close": "Close",
     "ended": "[Replay ended]",
     "connError": "[Replay connection error]",
+    "tokenExpired": "[Session expired, please refresh to log in again]",
     "connecting": "Connecting replay session..."
   },
   "topbar": {
